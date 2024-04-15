@@ -257,8 +257,6 @@ Since Piethon does not support generic or user-defined datatypes, we can represe
 Every expression in the source code needs a `PieType` assigned to it. Below is an example showing how 
 one might typecheck the expression appearing within a return statement.
 
-![typechecking](img/typechecking-rules.png)
-
 Piethon's typechecking rules can be summarized/made-precise using so-called 
 "judgement" notation:
 
