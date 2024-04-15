@@ -4,7 +4,9 @@ import antlr4.edu.psu.ist.parser.PiethonBaseListener;
 import antlr4.edu.psu.ist.parser.PiethonParser;
 import edu.psu.ist.analyzer.entry.SymbolTableEntry;
 import edu.psu.ist.analyzer.utils.Result;
+import edu.psu.ist.analyzer.utils.SourceLocation;
 import edu.psu.ist.analyzer.utils.TextInput;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,21 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public final class PieScriptCheckingListener extends PiethonBaseListener {
-    /**
-     * A special map that keeps track of all global procedures seen so far in
-     * the script.
-     */
-    private final Map<String, SymbolTableEntry.ProcDefEntry> procedures =
-            new HashMap<>();
 
-    /**
-     * A mutable field that will get reassigned each time we leave the local
-     * scope of a procedure definition.
-     * <p>
-     * Invariant: this will map strings (names) to either local symbol
-     * definitions: either formal parameters or variables -- never procedures.
-     */
-    private Map<String, SymbolTableEntry> currLocalScope;
+    // todo: read readme for needed items
 
     /**
      * A list that accumulates any errors found while traversing the tree for
@@ -47,7 +36,7 @@ public final class PieScriptCheckingListener extends PiethonBaseListener {
      */
     private final PiethonParser.ScriptContext hostContext;
 
-    // todo add a field for exp tpe checking
+    // todo add a field for exp tpe checking...
 
     public PieScriptCheckingListener(TextInput source,
                                      PiethonParser.ScriptContext hostContext) {
@@ -69,4 +58,17 @@ public final class PieScriptCheckingListener extends PiethonBaseListener {
     }
 
     // todo todo
+
+    /**
+     * Helper method for constructing a {@link SourceLocation} from an antlr4
+     * {@link ParserRuleContext}.
+     */
+    public SourceLocation mkSl(ParserRuleContext ctx) {
+        var start = ctx.start;
+        var stop = ctx.start;
+        return new SourceLocation(source, start.getLine(),
+                start.getCharPositionInLine(), stop.getLine(),
+                stop.getCharPositionInLine());
+    }
+
 }
