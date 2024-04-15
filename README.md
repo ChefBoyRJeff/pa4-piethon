@@ -357,6 +357,8 @@ using the `Digraph` class included in the `utils` package.
 You'll just need to add code to: `PieGraphBuildingListener` to build the graph
 based on the currently set piethon script.
 * each time you see a procedure, add a node to the graph
+<br>
+<br>
 * each time you see call statement, you'll need to know what procedure you're currently within
   then add an edge from that procedure to the one being called.
 
@@ -368,6 +370,10 @@ I used this fairly stale/old [library](https://github.com/nidi3/graphviz-java) g
 
 If you opt to use another library -- you must add the dependency for it to your `pom.xml` and
 it must hook in seamlessly and generate a PNG.
+
+> when the exportGraph method is started, you should be able to run the main in `BasicMainCli` to 
+> see what your graph looks like so far -- please do change the sample script in there 
+> (make it generate a more interesting call graph) 
 
 ## Task 4: Reflection
 

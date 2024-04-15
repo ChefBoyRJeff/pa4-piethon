@@ -29,23 +29,6 @@ public final class PieAnalyzer {
         return this;
     }
 
-    // a sample (throwaway) method .. assume this is in: PieAnalyzer.java
-    public PieAnalyzer testSampleListener() {
-        var testSourceCode = new TextInput("test.pie", """
-                   def foo(x : Bool) : Int32 is
-                      return x + 2;
-                   end
-
-                   def moo() : Void is
-                   end
-                """);
-        PiethonParser.ScriptContext scriptRootNode =
-                parseRoot(testSourceCode).get();
-        SampleListener printingListener = new SampleListener();
-        ParseTreeWalker.DEFAULT.walk(printingListener, scriptRootNode);
-        return this;
-    }
-
     public PieAnalyzer setOptions(Options o) {
         this.options = o;
         return this;
