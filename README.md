@@ -312,18 +312,19 @@ same scope must also trigger an error that gets accumulated during the analysis 
 
 ## Task 2: Unit testing
 
-I've included what are termed *negative tests* in the `PieAnalyzerTests` class. You 
-should add tests for program fragments of varying size and complexity to ensure that 
+I've included what are termed *negative tests* in the `PieAnalyzerTests` class 
+(test expecting/looking for certain failures). 
+You should add negative tests for more program fragments of varying size and complexity to ensure that 
 the analyzer is properly flagging ALL invalid piethon programs. Bad ones shouldn't get 
 through without getting flagged. 
 
 * Don't skimp on these tests, the walk occurring is fairly intricate and there is a lot of global 
-state in the pie analyzer -- you should convince yourself that it's working.
+state in the pie analyzer -- you should have enough tests to convince yourself that it's working.
 
-## Task 3: Generating a call graph 
+## Task 3: Generating a call graph
 
-A call graph is a directed (in our case acyclic) graph where the nodes are 
-procedures appearing in the script and an edge from one node *A* to another node *B* 
+A call graph is a directed (in our case acyclic) graph where the nodes are
+procedures appearing in the script and an edge from one node *A* to another node *B*
 implies that procedure *A* includes a call to procedure *B*.
 
 For example, the following script:
@@ -344,7 +345,7 @@ end
 ```
 would generate call graph that looks like the following:
 
-![treewalk](img/test-graph.png)
+![a-call-graph](img/test-graph.png)
 
 The starter kit includes a `PieGraphBuildingListener` class as well as a `Digraph` class
 generic in the type nodes. This class is implemented using an adjacency list
@@ -353,31 +354,33 @@ generic in the type nodes. This class is implemented using an adjacency list
 In the `PieGraphBuildingListener` class, you will need to build up a call graph
 using the `Digraph` class included in the `utils` package.
 
-You'll just need to add code to: `PieGraphBuildingListener` to build the graph 
-based on the currently set piethon script. 
+You'll just need to add code to: `PieGraphBuildingListener` to build the graph
+based on the currently set piethon script.
 * each time you see a procedure, add a node to the graph
 * each time you see call statement, you'll need to know what procedure you're currently within
-then add an edge from that procedure to the one being called.
- 
-Once the graph has been built up by your listener, the `exportGraph` method in `PieAnalayzer` should be implemented 
+  then add an edge from that procedure to the one being called.
+
+Once the graph has been built up by your listener, the `exportGraph` method in `PieAnalayzer` should be implemented
 to write a `.png` of the call graph to the root directory of the project.
 
-**Please try to make yours look visually nicer and more colorful than mine** -- i.e.: the one pictured above .. shouldn't be too hard :-) 
+**Please try to make yours look visually nicer and more colorful than mine** -- i.e.: the one pictured above .. shouldn't be too hard :-)
 I used this fairly stale/old [library](https://github.com/nidi3/graphviz-java) generate the image the dependency for it is already included in the maven `pom.xml`.
 
-If you opt to use another library -- you must add the dependency for it to your `pom.xml` and 
-it must hook in seamlessly and generate a PNG. 
+If you opt to use another library -- you must add the dependency for it to your `pom.xml` and
+it must hook in seamlessly and generate a PNG.
 
-## Task 3: Reflection
+## Task 4: Reflection
 
-Write a 3/4-page reflection on what you added, and any major stumbling blocks. Talk about 
-any features you would like to add to the piethon and estimate how difficult it might be to 
-implement...
+Write (at least) a 3/4-page reflection on what you added, and any major stumbling blocks. Talk about
+any features you would like to add to piethon and estimate how difficult it might be to
+incorporate... Is it possible to write recursive procedures in piethon as it is given?
 
-* **also:** if you *do* successfully add any additional features to the language 
-(e.g.: adding `if else` statements or allowing calls to be embedded within expressions)
-document this! Note: many extra things will require you to rethink how scoping is handled + you'll have to modify the grammar 
-(Piethon.g4)
+* **also:** if you *do* successfully add any additional features to the language
+  (e.g.: adding `if else` statements or allowing calls to be embedded within expressions)
+  document this! 
+* Note: many extra features will require you to rethink how scoping is handled + 
+you'll have to modify the grammar (Piethon.g4). If you unsure how big of a rabbit hole you 
+might be going down, ask me/send an email.
 
 # Handin
 
