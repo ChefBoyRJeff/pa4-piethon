@@ -355,12 +355,11 @@ using the `Digraph` class included in the `utils` package.
 You'll just need to add code to: `PieGraphBuildingListener` to build the graph
 based on the currently set piethon script.
 * each time you see a procedure, add a node to the graph
-<br>
-<br>
+
 * each time you see call statement, you'll need to know what procedure you're currently within
   then add an edge from that procedure to the one being called.
 
-Once the graph has been built up by your listener, the `exportGraph` method in `PieAnalayzer` should be implemented
+Once the graph has been built up by your listener, the `exportGraph` method in `PieAnalyzer` should be implemented
 to write a `.png` of the call graph to the root directory of the project.
 
 **Please try to make yours look visually nicer and more colorful than mine** -- i.e.: the one pictured above .. shouldn't be too hard :-)
