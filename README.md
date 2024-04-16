@@ -267,7 +267,7 @@ Env \     C
 ```
 You can read the rule titled RuleName above like so: 
 
-> "if we know the premeses P1 and P2 are true in the scope/environment (Env), then 
+> "if we know the premises P1 and P2 are true in the scope/environment (Env), then 
 we can derive the conclusion `C` below the line."
 
 Anything listed before the \ in these rules are things assumed to be available 
